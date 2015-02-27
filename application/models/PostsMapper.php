@@ -36,10 +36,33 @@ class Application_Model_PostsMapper extends Mapper_Base
             ->setStamp($row->stamp);
     }
 
-    public function findByUserId($user_id)
+    public function findByUserId($user_id, $limit=20){
+        if (is_array($user_id)){
+            return $this->findByUserIds($user_id, $limit);
+        }
+
+        if (is_int($user_id)){
+            $following = new Application_Model_FollowingMapper();
+            $userFollowings = $following->findByWhoIFollowing($user_id);
+            $userIds = array($user_id);
+
+            foreach ($userFollowings as $row){
+                array_push($user_id, $row->user_id);
+            }
+
+            return $this->findByUserIds($userIds, $limit);
+        }
+
+        return;
+    }
+
+    public function findByUserIds($user_ids, $limit=20)
     {
         $db = $this->getDbTable();
-        $select = $db->select()->where('user_id = ?', $user_id);
+        $select = $db->select()
+                  ->where('user_id in (?)', $user_ids)
+                  ->order("stamp")
+                  ->limit($limit, 0);
         $resultSet = $db->fetchAll($select);
 
         if (0 == count($resultSet)) {
@@ -75,13 +98,13 @@ class Application_Model_PostsMapper extends Mapper_Base
 
     public function delete($id)
     {
-        $post = $this->getDbTable()->find( (int)$id);
+        $posts = $this->getDbTable()->find( (int)$id);
 
-        if (count($post) == 0){
+        if (count($posts) == 0){
             return;
         }
 
-        $post[0]->delete();
+        $posts[0]->delete();
     }
 }
 
