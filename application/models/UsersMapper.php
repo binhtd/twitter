@@ -66,6 +66,11 @@ class Application_Model_UsersMapper extends Mapper_Base
         $resultSet = $this->getDbTable()->fetchAll();
         $entries   = array();
         foreach ($resultSet as $row) {
+            if (($row->is_active == 0) || ($row->is_deleted == 1))
+            {
+                continue;
+            }
+
             $entry = new Application_Model_Posts();
             $entry->setId($row->id)
                 ->setPassword($row->password)
@@ -98,7 +103,10 @@ class Application_Model_UsersMapper extends Mapper_Base
     {
         $db = $this->getDbTable();
         $select = $db->select()
-            ->where('id in (?)', $userIds);
+            ->where('id in (?)', $userIds)
+            ->where('is_active = 1')
+            ->where('is_deleted = 0');
+
         $resultSet = $db->fetchAll($select);
 
         $entries   = array();
