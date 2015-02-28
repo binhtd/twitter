@@ -1,1 +1,37 @@
-<?php echo $this->layout()->content; ?>
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Twitter1 clone');
+echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+    <!-- Bootstrap Core CSS -->
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl('/css/bootstrap.min.css'));?>
+    <!-- Custom CSS -->
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl('/css/grayscale.css'));?>
+    <!-- Custom Fonts -->
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl('/font-awesome/css/font-awesome.min.css'));?>
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<?php //echo $this->render('_menu.phtml'); ?>
+    <?php echo $this->layout()->content; ?>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <?php echo $this->headScript()->prependFile($this->baseUrl("/js/html5shiv.js"));?>
+    <?php echo $this->headScript()->prependFile($this->baseUrl("/js/respond.min.js"));?>
+    <![endif]-->
+    <!-- jQuery -->
+    <?php echo $this->headScript()->prependFile($this->baseUrl("/js/jquery.js"));?>
+    <!-- Bootstrap Core JavaScript -->
+    <?php echo $this->headScript()->prependFile($this->baseUrl("/js/bootstrap.min.js"));?>
+    <!-- Plugin JavaScript -->
+    <?php echo $this->headScript()->prependFile($this->baseUrl("/js/jquery.easing.min.js"));?>
+    <!-- Custom Theme JavaScript -->
+    <?php echo $this->headScript()->prependFile($this->baseUrl("/js/grayscale.js"));?>
+</body>
+</html>
