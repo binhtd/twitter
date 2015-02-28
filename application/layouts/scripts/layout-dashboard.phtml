@@ -38,7 +38,10 @@ echo $this->doctype(); ?>
                 <div class="sidebar">
                     <div class="flex-module-inner">
                         <ul class="list-unstyled">
+                            <li> <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'dashboard')); ?>">Dashboard</a> </li>
                             <li> <a href="#">Add Tweet</a> </li>
+                            <li> <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'viewall')); ?>">View all user you don't follow</a> </li>
+                            <li> <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'viewallfollowing')); ?>">View all user you follow</a> </li>
                         </ul>
                     </div>
                 </div>

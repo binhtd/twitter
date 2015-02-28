@@ -62,7 +62,21 @@ class UserController extends Zend_Controller_Action
         $this->view->unFollowingUser = $userMapper->findByWhoIDontFollowing($auth->getIdentity()->id, 3);
     }
 
+    public function viewallAction()
+    {
+        $this->_helper->layout->setLayout('layout-dashboard');
+        $auth = Zend_Auth::getInstance();
+        $userMapper = new Application_Model_UsersMapper();
+        $this->view->allUnFollowingUser = $userMapper->findByWhoIDontFollowing($auth->getIdentity()->id, 0);
+    }
 
+    public function viewallfollowingAction()
+    {
+        $this->_helper->layout->setLayout('layout-dashboard');
+        $auth = Zend_Auth::getInstance();
+        $userMapper = new Application_Model_UsersMapper();
+        $this->view->allFollowingUser = $userMapper->findByWhoIFollowing($auth->getIdentity()->id);
+    }
 }
 
 

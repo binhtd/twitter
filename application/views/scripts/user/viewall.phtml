@@ -1,0 +1,27 @@
+<div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h5> Here are all people you might enjoy following. </h5>
+            <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'dashboard')); ?>" class="view-all-suggestions">Refresh</a>· <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'viewall')); ?>" class="view-all-suggestions">View all</a> </div>
+        <div class="panel-footer">
+            <div class="row">
+                <?php if (count($this->allUnFollowingUser)==0):?>
+                    <p>Don't have any user</p>
+                <?php else:?>
+                    <?php foreach ($this->allUnFollowingUser as $user):?>
+                        <div class="col-md-4">
+                            <a data-screen-name="1102idea" data-name="2idea" data-user-id="2775565190" href="/1102idea" class="account-group js-account-group js-user-profile-link">
+                                <img width="128" height="128" data-user-id="2775565190" class="avatar size128 js-action-profile-avatar" alt="2idea" src="<?php echo $this->baseUrl('../../img/mdjaJZiZ_reasonably_small.png')?>">
+                            <span class="account-group-inner js-action-profile-name">
+                                <strong class="fullname"><?php echo $user->getFullname();?></strong>
+                                <small data-user-id="2775565190" class="username"><?php echo $user->getUsername();?></small>
+                            </span>
+                            </a>
+                            <a class="btn btn-default" href="<?php echo $this->url(array('controller' => 'follow', 'action' => 'following'));?>/id/<?php echo $user->getId()?>"> <span class="glyphicon glyphicon-user"></span> Follow</a>
+                        </div>
+                    <?php endforeach;?>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+</div>

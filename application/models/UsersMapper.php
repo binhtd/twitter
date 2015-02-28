@@ -72,8 +72,12 @@ class Application_Model_UsersMapper extends Mapper_Base
 
         $select->where('is_active = 1')
             ->where('is_deleted = 0')
-            ->order("rand()")
-            ->limit($limit);
+            ->order("rand()");
+
+        if ($limit > 0)
+        {
+            $select->limit($limit);
+        }
 
         $resultSet = $db->fetchAll($select);
 
@@ -102,9 +106,12 @@ class Application_Model_UsersMapper extends Mapper_Base
         $resultSet = $following->findByWhoIFollowing($follower_id);
 
         $userIds = array();
-        foreach($resultSet as $row)
+        if (!empty($resultSet))
         {
-            array_push($userIds, $row->getUserId());
+            foreach($resultSet as $row)
+            {
+                array_push($userIds, $row->getUserId());
+            }
         }
 
         if (count($userIds) == 0)
