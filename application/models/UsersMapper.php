@@ -25,6 +25,44 @@ class Application_Model_UsersMapper extends Mapper_Base
             ->setFullname($row->fullname);
     }
 
+    public function findByWhoIDontFollowing($follower_id, $limit=3){
+        $following = new Application_Model_FollowingMapper();
+        $resultSet = $following->findByWhoIDontFollowing($follower_id);
+
+        $userIds = array();
+        foreach($resultSet as $row)
+        {
+            array_push($userIds, $row->getUserId());
+        }
+
+        if (count($userIds) == 0)
+        {
+            return;
+        }
+
+
+        $db = $this->getDbTable();
+        $select = $db->select()
+            ->where('id in (?)', $userIds)
+            ->where('is_active = 1')
+            ->where('is_deleted = 0')
+            ->order("rand()")
+            ->limit($limit);
+
+        $resultSet = $db->fetchAll($select);
+
+        $entries   = array();
+        foreach ($resultSet as $row) {
+            $entry = new Application_Model_Following();
+            $entry->setUserId($row->user_id)
+                ->setFollowerId($row->follower_id);
+            $entries[] = $entry;
+        }
+        return $entries;
+
+        return $this->getUserByListUserIds($userIds);
+    }
+
     public function findByWhoIFollowing($follower_id){
         $following = new Application_Model_FollowingMapper();
         $resultSet = $following->findByWhoIFollowing($follower_id);
@@ -71,7 +109,7 @@ class Application_Model_UsersMapper extends Mapper_Base
                 continue;
             }
 
-            $entry = new Application_Model_Posts();
+            $entry = new Application_Model_Users();
             $entry->setId($row->id)
                 ->setPassword($row->password)
                 ->setSalt($row->salt)
@@ -111,9 +149,17 @@ class Application_Model_UsersMapper extends Mapper_Base
 
         $entries   = array();
         foreach ($resultSet as $row) {
-            $entry = new Application_Model_Following();
-            $entry->setUserId($row->user_id)
-                ->setFollowerId($row->follower_id);
+            $entry = new Application_Model_Users();
+            $entry->setId($row->id)
+                ->setPassword($row->password)
+                ->setSalt($row->salt)
+                ->setRole($row->role)
+                ->setDateCreated($row->date_created)
+                ->setIsActive($row->is_active)
+                ->setIsDeleted($row->is_deleted)
+                ->setPhoneNumber($row->phone_number)
+                ->setEmail($row->email)
+                ->setFullname($row->fullname);
             $entries[] = $entry;
         }
         return $entries;

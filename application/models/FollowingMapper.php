@@ -6,6 +6,22 @@ class Application_Model_FollowingMapper extends Mapper_Base
 {
     protected $_dbTable_Class_Name = "Application_Model_DbTable_Following";
 
+
+    public function findByWhoIDontFollowing($follower_id)
+    {
+        $db = $this->getDbTable();
+        $select = $db->select()
+            ->where('follower_id != ?', $follower_id);
+
+        $resultSet = $db->fetchAll($select);
+
+        if (0 == count($resultSet)) {
+            return;
+        }
+
+        return $this->getListFollowingObjectFromResultset($resultSet);
+    }
+
     public function findByWhoIFollowing($follower_id)
     {
         $db = $this->getDbTable();
