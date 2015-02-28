@@ -21,7 +21,7 @@ class Zend_View_Helper_ProfileInfo
 
         $postMapper = new Application_Model_PostsMapper();
         $sweets = $postMapper->findByUserId($auth->getIdentity()->id, 0);
-        $sweets = empty($sweets) ? 0 : $sweets;
+        $sweets = empty($sweets) ? 0 : count($sweets);
 
         $followingMapper = new Application_Model_FollowingMapper();
         $followings = $followingMapper->findByWhoFolowingMe($auth->getIdentity()->id);

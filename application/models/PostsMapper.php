@@ -59,9 +59,14 @@ class Application_Model_PostsMapper extends Mapper_Base
     public function findByUserIds($user_ids, $limit=20)
     {
         $db = $this->getDbTable();
-        $select = $db->select()
-                  ->where('user_id in (?)', $user_ids)
-                  ->order("stamp");
+        $select = $db->select();
+
+        if (count($user_ids) > 0)
+        {
+            $select->where('user_id in (?)', $user_ids);
+        }
+
+        $select->order("stamp");
 
         if ($limit != 0){
             $select->limit($limit, 0);
