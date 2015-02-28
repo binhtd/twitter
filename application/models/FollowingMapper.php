@@ -16,7 +16,7 @@ class Application_Model_FollowingMapper extends Mapper_Base
         $resultSet = $db->fetchAll($select);
 
         if (0 == count($resultSet)) {
-            return;
+            return array();
         }
 
         return $this->getListFollowingObjectFromResultset($resultSet);
@@ -30,10 +30,6 @@ class Application_Model_FollowingMapper extends Mapper_Base
 
         $resultSet = $db->fetchAll($select);
 
-        if (0 == count($resultSet)) {
-            return;
-        }
-
         return $this->getListFollowingObjectFromResultset($resultSet);
     }
 
@@ -43,10 +39,6 @@ class Application_Model_FollowingMapper extends Mapper_Base
             ->where('user_id = ?', $user_id);
 
         $resultSet = $db->fetchAll($select);
-
-        if (0 == count($resultSet)) {
-            return;
-        }
 
         return $this->getListFollowingObjectFromResultset($resultSet);
     }

@@ -26,7 +26,7 @@ class Application_Model_PostsMapper extends Mapper_Base
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
-            return;
+            return array();
         }
 
         $row = $result->current();
@@ -53,7 +53,7 @@ class Application_Model_PostsMapper extends Mapper_Base
             return $this->findByUserIds($userIds, $limit);
         }
 
-        return;
+        return array();
     }
 
     public function findByUserIds($user_ids, $limit=20)
@@ -74,10 +74,6 @@ class Application_Model_PostsMapper extends Mapper_Base
 
 
         $resultSet = $db->fetchAll($select);
-
-        if (0 == count($resultSet)) {
-            return;
-        }
 
         $entries   = array();
         foreach ($resultSet as $row) {
