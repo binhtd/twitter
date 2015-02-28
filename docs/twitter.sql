@@ -37,6 +37,7 @@ CREATE TABLE `following` (
 
 LOCK TABLES `following` WRITE;
 /*!40000 ALTER TABLE `following` DISABLE KEYS */;
+INSERT INTO `following` VALUES (11,'14');
 /*!40000 ALTER TABLE `following` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,7 +54,7 @@ CREATE TABLE `posts` (
   `body` varchar(140) NOT NULL,
   `stamp` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,6 +63,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES (1,11,'how are you doing today1','2015-03-01 00:12:46'),(2,11,'how are you doing today2','2015-03-01 00:12:46'),(3,11,'how are you doing today3','2015-03-01 00:12:46'),(4,11,'how are you doing today4','2015-03-01 00:12:46'),(5,11,'how are you doing today5','2015-03-01 00:12:46');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +87,7 @@ CREATE TABLE `users` (
   `email` varchar(255) DEFAULT NULL,
   `fullname` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +96,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (11,'trinhducbinh@yahoo.com','0d388f0c1bfdcb426c3621c4376b738bfdf9f9b3','54f192c40a79e','user','0000-00-00 00:00:00',1,0,'123456','trinhducbinh@yahoo.com','trinh duc binh1'),(12,'trinhducbinh1@yahoo.com','0d388f0c1bfdcb426c3621c4376b738bfdf9f9b3','54f192c40a79e','user','0000-00-00 00:00:00',1,0,'123456','trinhducbinh@yahoo.com','trinh duc binh2'),(13,'trinhducbinh2@yahoo.com','0d388f0c1bfdcb426c3621c4376b738bfdf9f9b3','54f192c40a79e','user','0000-00-00 00:00:00',1,0,'123456','trinhducbinh@yahoo.com','trinh duc binh3'),(14,'trinhducbinh3@yahoo.com','0d388f0c1bfdcb426c3621c4376b738bfdf9f9b3','54f192c40a79e','user','0000-00-00 00:00:00',1,0,'123456','trinhducbinh@yahoo.com','trinh duc binh4'),(15,'trinhducbinh4@yahoo.com','0d388f0c1bfdcb426c3621c4376b738bfdf9f9b3','54f192c40a79e','user','0000-00-00 00:00:00',1,0,'123456','trinhducbinh@yahoo.com','trinh duc binh5');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -106,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-02-27 12:14:33
+-- Dump completed on 2015-03-01  0:27:24
