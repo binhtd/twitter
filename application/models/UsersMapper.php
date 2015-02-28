@@ -5,7 +5,31 @@ class Application_Model_UsersMapper extends Mapper_Base
 {
     protected $_dbTable_Class_Name = "Application_Model_DbTable_Users";
 
-    public function find($id, Application_Model_Users $users)
+    public function save(Application_Model_Users $user)
+    {
+        $data = array(
+            'id'    => $user->getId(),
+            'username'   => $user->getUsername(),
+            'password' => $user->getPassword(),
+            'salt' => $user->getSalt(),
+            'role' => $user->getDateCreated(),
+            'is_active' => $user->getIsActive(),
+            'is_deleted' => $user->getIsDeleted(),
+            'phone_number' => $user->getPhoneNumber(),
+            'email' => $user->getEmail(),
+            'fullname' => $user->getFullname(),
+        );
+
+        if (null === ($id = $user->getId())) {
+            unset($data['id']);
+            $this->getDbTable()->insert($data);
+        } else {
+            $this->getDbTable()->update($data, array('id = ?' => $id));
+        }
+    }
+
+
+    public function find($id, Application_Model_Users $user)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -13,7 +37,7 @@ class Application_Model_UsersMapper extends Mapper_Base
         }
 
         $row = $result->current();
-        $users->setId($row->id)
+        $user->setId($row->id)
             ->setPassword($row->password)
             ->setSalt($row->salt)
             ->setRole($row->role)

@@ -6,15 +6,15 @@ class Application_Model_PostsMapper extends Mapper_Base
 {
     protected $_dbTable_Class_Name = "Application_Model_DbTable_Posts";
 
-    public function save(Application_Model_Posts $posts)
+    public function save(Application_Model_Posts $post)
     {
         $data = array(
-            'user_id'   => $posts->getUserId(),
-            'body' => $posts->getBody(),
+            'user_id'   => $post->getUserId(),
+            'body' => $post->getBody(),
             'stamp' => date('Y-m-d H:i:s'),
         );
 
-        if (null === ($id = $posts->getId())) {
+        if (null === ($id = $post->getId())) {
             unset($data['id']);
             $this->getDbTable()->insert($data);
         } else {
@@ -22,7 +22,7 @@ class Application_Model_PostsMapper extends Mapper_Base
         }
     }
 
-    public function find($id, Application_Model_Posts $posts)
+    public function find($id, Application_Model_Posts $post)
     {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
@@ -30,7 +30,7 @@ class Application_Model_PostsMapper extends Mapper_Base
         }
 
         $row = $result->current();
-        $posts->setId($row->id)
+        $post->setId($row->id)
             ->setUserId($row->user_id)
             ->setBody($row->body)
             ->setStamp($row->stamp);
