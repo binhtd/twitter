@@ -53,7 +53,7 @@ class Application_Model_FollowingMapper extends Mapper_Base
 
     public function followUser(Application_Model_Following $following)
     {
-        $count = isUserFollowingSomeone($following->getFollowedId(),$following->getUserId());
+        $count = $this->isUserFollowingSomeone($following->getFollowedId(),$following->getUserId());
 
         if ($count == 0){
             return $this->save($following);
@@ -64,7 +64,7 @@ class Application_Model_FollowingMapper extends Mapper_Base
 
     public function unfollowUser(Application_Model_Following $following)
     {
-        $count = isUserFollowingSomeone($following->getFollowedId(),$following->getUserId());
+        $count = $this->isUserFollowingSomeone($following->getFollowedId(),$following->getUserId());
 
         if ($count != 0){
             return $this->delete($following);

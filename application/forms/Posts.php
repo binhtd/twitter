@@ -7,7 +7,5 @@ class Application_Form_Posts extends Zend_Form
     {
         /* Form Elements & Other Definitions Here ... */
     }
-
-
 }
 

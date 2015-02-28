@@ -51,24 +51,26 @@ class Application_Model_UsersMapper extends Mapper_Base
 
     public function findByWhoIDontFollowing($follower_id, $limit=3){
         $following = new Application_Model_FollowingMapper();
-        $resultSet = $following->findByWhoIDontFollowing($follower_id);
+        $resultSet = $following->findByWhoIFollowing($follower_id);
 
         $userIds = array();
-        foreach($resultSet as $row)
+        if (!empty($resultSet))
         {
-            array_push($userIds, $row->getUserId());
+            foreach($resultSet as $row)
+            {
+                array_push($userIds, $row->getUserId());
+            }
         }
-
-        if (count($userIds) == 0)
-        {
-            return;
-        }
-
 
         $db = $this->getDbTable();
-        $select = $db->select()
-            ->where('id in (?)', $userIds)
-            ->where('is_active = 1')
+        $select = $db->select();
+
+        if (count($userIds) > 0)
+        {
+            $select->where('id not in (?)', $userIds);
+        }
+
+        $select->where('is_active = 1')
             ->where('is_deleted = 0')
             ->order("rand()")
             ->limit($limit);
@@ -77,14 +79,22 @@ class Application_Model_UsersMapper extends Mapper_Base
 
         $entries   = array();
         foreach ($resultSet as $row) {
-            $entry = new Application_Model_Following();
-            $entry->setUserId($row->user_id)
-                ->setFollowerId($row->follower_id);
+            $entry = new Application_Model_Users();
+            $entry->setId($row->id)
+                ->setUsername($row->username)
+                ->setPassword($row->password)
+                ->setSalt($row->salt)
+                ->setRole($row->role)
+                ->setDatecreated($row->date_created)
+                ->setIsactive($row->is_active)
+                ->setIsdeleted($row->is_deleted)
+                ->setPhonenumber($row->phone_number)
+                ->setEmail($row->email)
+                ->setFullname($row->fullname);
+
             $entries[] = $entry;
         }
         return $entries;
-
-        return $this->getUserByListUserIds($userIds);
     }
 
     public function findByWhoIFollowing($follower_id){
@@ -135,6 +145,7 @@ class Application_Model_UsersMapper extends Mapper_Base
 
             $entry = new Application_Model_Users();
             $entry->setId($row->id)
+                ->setUsername($row->username)
                 ->setPassword($row->password)
                 ->setSalt($row->salt)
                 ->setRole($row->role)

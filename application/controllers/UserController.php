@@ -50,13 +50,16 @@ class UserController extends Zend_Controller_Action
         $identify["remember_me"] = false;
 
         if ($auth->authenticateUserLogin($identify)) {
-            $this->_helper->redirector(array('controller' => 'user', 'action' => 'dashboard'));
+            $this->_helper->redirector('dashboard', "user");
         }
     }
 
     public function dashboardAction()
     {
         $this->_helper->layout->setLayout('layout-dashboard');
+        $auth = Zend_Auth::getInstance();
+        $userMapper = new Application_Model_UsersMapper();
+        $this->view->unFollowingUser = $userMapper->findByWhoIDontFollowing($auth->getIdentity()->id, 3);
     }
 
 

@@ -8,11 +8,26 @@ class FollowController extends Zend_Controller_Action
         /* Initialize action controller here */
     }
 
-    public function indexAction()
+    public function followingAction()
     {
-        // action body
+        $this->_helper->getHelper('viewRenderer')->setNoRender();
+        $this->_helper->getHelper('layout')->disableLayout();
+        $request = $this->getRequest();
+        $userId = (int)$request->getParam("id");
+
+        if (!is_numeric($userId)){
+            $this->_helper->redirector('dashboard', "user");
+        }
+
+        $auth = Zend_Auth::getInstance();
+        $following = new Application_Model_Following();
+        $following->setUserId($userId)
+                  ->setFollowerId($auth->getIdentity()->id);
+
+        $followingMapper = new Application_Model_FollowingMapper();
+        $followingMapper->followUser($following);
+        $this->_helper->redirector('dashboard', "user");
+
     }
-
-
 }
 
