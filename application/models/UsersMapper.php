@@ -33,8 +33,9 @@ class Application_Model_UsersMapper extends Mapper_Base
     public function find($id, Application_Model_Users $user)
     {
         $result = $this->getDbTable()->find($id);
+
         if (0 == count($result)) {
-            return;
+            return array();
         }
 
         $row = $result->current();
@@ -115,11 +116,6 @@ class Application_Model_UsersMapper extends Mapper_Base
             }
         }
 
-        if (count($userIds) == 0)
-        {
-            return;
-        }
-
         return $this->getUserByListUserIds($userIds);
     }
 
@@ -131,11 +127,6 @@ class Application_Model_UsersMapper extends Mapper_Base
         foreach($resultSet as $row)
         {
             array_push($userIds, $row->getUserId());
-        }
-
-        if (count($userIds) == 0)
-        {
-            return;
         }
 
         return $this->getUserByListUserIds($userIds);
@@ -174,7 +165,7 @@ class Application_Model_UsersMapper extends Mapper_Base
         $users = $this->getDbTable()->find( (int)$id);
 
         if (count($users) == 0){
-            return;
+            return array();
         }
 
         $users[0]->delete();
