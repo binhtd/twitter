@@ -43,7 +43,7 @@ echo $this->doctype(); ?>
     <!-- About Section -->
     <section class="container content-section">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 panel panel-default">
                 <div class="sidebar">
                     <?php echo $this->profileInfo();?>
                 </div>
@@ -58,8 +58,8 @@ echo $this->doctype(); ?>
                     </div>
                 </div>
             </div>
-    <?php echo $this->layout()->content; ?>
-            <div class="col-md-3">
+            <?php echo $this->layout()->content; ?>
+            <div class="col-md-3  panel panel-default">
                 <div class="sidebar">
                     <ul class="list-inline list-inline list-unstyled">
                         <li class="Footer-item Footer-copyright copyright">&copy; 2015 Twitter</li>
