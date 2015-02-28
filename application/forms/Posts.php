@@ -11,6 +11,9 @@ class Application_Form_Posts extends Zend_Form
             'label'      => 'Tweet:',
             'required'   => true,
             'filters'    => array('StringTrim'),
+            'rows' => '3',
+            'maxlength' => 140,
+            'class' => 'form-control',
             'validators' => array(
                 array('validator' => 'StringLength', 'options' => array(0, 140))
             )
@@ -18,6 +21,7 @@ class Application_Form_Posts extends Zend_Form
 
         // Add the submit button
         $this->addElement('submit', 'submit', array(
+            "class" => "btn btn-default",
             'ignore'   => true,
             'label'    => 'Save',
         ));
