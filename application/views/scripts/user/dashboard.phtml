@@ -27,16 +27,13 @@
     <div class="panel panel-default">
         <div class="panel-body feed-list">
             <ul class="list-unstyled">
-                <li>
-                    <div class="row">
-                        <div class="col-md-2"><img alt="" src="https://pbs.twimg.com/profile_images/3507996607/24aaffa670e634a7da9a087bfa83abe6_bigger.png" class="avatar js-action-profile-avatar"></div>
-                        <div class="col-md-10">
-                            <h6> <a data-user-id="63359297" href="/fbplatform" class="account-group js-account-group js-action-profile js-user-profile-link js-nav" data-impression-cookie="[&quot;63359297&quot;,&quot;653feb7b834886ed&quot;,&quot;promoted&quot;,&quot;&quot;,[],&quot;63359297&quot;]"> <strong data-aria-label-part="" class="fullname js-action-profile-name show-popup-with-id">Facebook Developers</strong> <span>&rlm;</span><span data-aria-label-part="" class="username js-action-profile-name"><s>@</s><b>fbplatform</b></span> </a> <small class="time"> <a data-send-impression-cookie="" title="9:34 AM - 27 Jan 2015" class="tweet-timestamp js-permalink js-nav js-tooltip" href="/fbplatform/status/560128743964803073"><span data-long-form="true" data-time-ms="1422380073000" data-time="1422380073" data-aria-label-part="last" class="_timestamp js-short-timestamp ">Jan 27</span></a> </small> </h6>
-                            <p lang="en" data-aria-label-part="0" class="js-tweet-text tweet-text">F8 2015 is coming March 25-26! We will stream the keynote sessions &amp; more. Register to attend F8 online today! <a title="https://cards.twitter.com/cards/11q0ch/bcs2" target="_blank" class="twitter-timeline-link u-hidden" data-expanded-url="https://cards.twitter.com/cards/11q0ch/bcs2" dir="ltr" rel="nofollow" href="https://t.co/oad6hIq2XS"><span class="tco-ellipsis"></span><span class="invisible">https://</span><span class="js-display-url">cards.twitter.com/cards/11q0ch/b</span><span class="invisible">cs2</span><span class="tco-ellipsis"><span class="invisible">&nbsp;</span>…</span></a></p>
-                            <div class="bottom"><a href="#" class="item"><span aria-hidden="true" class="glyphicon glyphicon-share-alt"></span></a> <a href="#"><span aria-hidden="true" class="glyphicon glyphicon-refresh"></span> 1</a><a href="#"><span aria-hidden="true" class="glyphicon glyphicon-star"></span> 1</a></div>
+                <?php foreach($this->posts as $post):?>
+                    <li>
+                        <div class="row">
+                           <?php echo $post->getBody();?>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                <?php endforeach;?>
             </ul>
         </div>
     </div>

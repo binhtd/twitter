@@ -41,7 +41,7 @@ class Application_Model_PostsMapper extends Mapper_Base
             return $this->findByUserIds($user_id, $limit);
         }
 
-        if (is_int($user_id)){
+        if (is_numeric($user_id)){
             $following = new Application_Model_FollowingMapper();
             $userFollowings = $following->findByWhoIFollowing($user_id);
             $userIds = array($user_id);

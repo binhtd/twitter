@@ -60,6 +60,9 @@ class UserController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $userMapper = new Application_Model_UsersMapper();
         $this->view->unFollowingUser = $userMapper->findByWhoIDontFollowing($auth->getIdentity()->id, 3);
+
+        $postMapper = new Application_Model_PostsMapper();
+        $this->view->posts = $postMapper->findByUserId((int)$auth->getIdentity()->id, 10);
     }
 
     public function viewallAction()
@@ -76,6 +79,29 @@ class UserController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $userMapper = new Application_Model_UsersMapper();
         $this->view->allFollowingUser = $userMapper->findByWhoIFollowing($auth->getIdentity()->id);
+    }
+
+    public function addtweetAction()
+    {
+        $this->_helper->layout->setLayout('layout-dashboard');
+        $request = $this->getRequest();
+        $form    = new Application_Form_Posts();
+
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($request->getPost())) {
+                $auth = Zend_Auth::getInstance();
+                $post = new Application_Model_Posts();
+                $post->setUserId($auth->getIdentity()->id)
+                     ->setBody($request->getPost("body"))
+                     ->setStamp(date('Y-m-d H:i:s'));
+                $mapper  = new Application_Model_PostsMapper();
+                $mapper->save($post);
+
+                $this->_helper->redirector('dashboard', "user");
+            }
+        }
+
+        $this->view->form = $form;
     }
 }
 
