@@ -10,9 +10,11 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $auth = Zend_Auth::getInstance();
+
+        if ($auth->hasIdentity()){
+            $this->_helper->redirector('dashboard', "user");
+        }
     }
-
-
 }
 

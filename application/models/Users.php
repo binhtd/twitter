@@ -71,46 +71,46 @@ class Application_Model_Users extends Model_Base
         return $this->_role;
     }
 
-    public function setDateCreated($date_created)
+    public function setDatecreated($date_created)
     {
         $this->_date_created = (string)$date_created;
         return $this;
     }
 
-    public function getDateCreated()
+    public function getDatecreated()
     {
         return $this->_date_created;
     }
 
-    public function setIsActive($is_active)
+    public function setIsactive($is_active)
     {
         $this->_is_active = (int)$is_active;
         return $this;
     }
 
-    public function getIsActive()
+    public function getIsactive()
     {
         return $this->_is_active;
     }
 
-    public function setIsDeleted($is_deleted)
+    public function setIsdeleted($is_deleted)
     {
         $this->_is_deleted = (int)$is_deleted;
         return $this;
     }
 
-    public function getIsDeleted()
+    public function getIsdeleted()
     {
         return $this->_is_deleted;
     }
 
-    public function setPhoneNumber($phone_number)
+    public function setPhonenumber($phone_number)
     {
         $this->_phone_number = (string)$phone_number;
         return $this;
     }
 
-    public function getPhoneNumber()
+    public function getPhonenumber()
     {
         return $this->_phone_number;
     }

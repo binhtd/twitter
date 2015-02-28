@@ -45,13 +45,16 @@
                         <form method="post" action="<?php echo $this->url(array('controller' => 'User', 'action' => 'signup')); ?>" role="form">
                             <div class="form-group"> Next to Twitter? Sign up</div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Full name..." >
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Full name..." >
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Email...">
+                                <input type="text" id="email" name="email" class="form-control" placeholder="Email...">
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Password" class="form-control">
+                                <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="phonenumber" name="phonenumber" placeholder="Phone number" class="form-control">
                             </div>
                             <div class="clearfix">
                                 <button class="btn pull-right btn-warning" type="submit">Sign me up!</button>

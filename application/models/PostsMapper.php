@@ -61,8 +61,13 @@ class Application_Model_PostsMapper extends Mapper_Base
         $db = $this->getDbTable();
         $select = $db->select()
                   ->where('user_id in (?)', $user_ids)
-                  ->order("stamp")
-                  ->limit($limit, 0);
+                  ->order("stamp");
+
+        if ($limit != 0){
+            $select->limit($limit, 0);
+        }
+
+
         $resultSet = $db->fetchAll($select);
 
         if (0 == count($resultSet)) {

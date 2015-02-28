@@ -14,10 +14,11 @@ class AuthController extends Zend_Controller_Action
             $identify = array();
             $identify['username'] = $request->getParam('username_signin');
             $identify['password'] = $request->getParam('password_signin');
+            $identify["remember_me"] = $request->getParam("remember_me") == 1 ? true: false;
             $auth = new Application_Model_AuthMapper();
 
             if ($auth->authenticateUserLogin($identify)) {
-                $this->_helper->redirector('user', 'dashboard');
+                $this->_helper->redirector('dashboard', "user");
             }
         }
     }

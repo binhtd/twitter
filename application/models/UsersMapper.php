@@ -12,10 +12,10 @@ class Application_Model_UsersMapper extends Mapper_Base
             'username'   => $user->getUsername(),
             'password' => $user->getPassword(),
             'salt' => $user->getSalt(),
-            'role' => $user->getDateCreated(),
-            'is_active' => $user->getIsActive(),
-            'is_deleted' => $user->getIsDeleted(),
-            'phone_number' => $user->getPhoneNumber(),
+            'role' => $user->getRole(),
+            'is_active' => $user->getIsactive(),
+            'is_deleted' => $user->getIsdeleted(),
+            'phone_number' => $user->getPhonenumber(),
             'email' => $user->getEmail(),
             'fullname' => $user->getFullname(),
         );
@@ -41,10 +41,10 @@ class Application_Model_UsersMapper extends Mapper_Base
             ->setPassword($row->password)
             ->setSalt($row->salt)
             ->setRole($row->role)
-            ->setDateCreated($row->date_created)
-            ->setIsActive($row->is_active)
-            ->setIsDeleted($row->is_deleted)
-            ->setPhoneNumber($row->phone_number)
+            ->setDatecreated($row->date_created)
+            ->setIsactive($row->is_active)
+            ->setIsdeleted($row->is_deleted)
+            ->setPhonenumber($row->phone_number)
             ->setEmail($row->email)
             ->setFullname($row->fullname);
     }
@@ -138,10 +138,10 @@ class Application_Model_UsersMapper extends Mapper_Base
                 ->setPassword($row->password)
                 ->setSalt($row->salt)
                 ->setRole($row->role)
-                ->setDateCreated($row->date_created)
-                ->setIsActive($row->is_active)
-                ->setIsDeleted($row->is_deleted)
-                ->setPhoneNumber($row->phone_number)
+                ->setDatecreated($row->date_created)
+                ->setIsactive($row->is_active)
+                ->setIsdeleted($row->is_deleted)
+                ->setPhonenumber($row->phone_number)
                 ->setEmail($row->email)
                 ->setFullname($row->fullname);
 
@@ -178,10 +178,10 @@ class Application_Model_UsersMapper extends Mapper_Base
                 ->setPassword($row->password)
                 ->setSalt($row->salt)
                 ->setRole($row->role)
-                ->setDateCreated($row->date_created)
-                ->setIsActive($row->is_active)
-                ->setIsDeleted($row->is_deleted)
-                ->setPhoneNumber($row->phone_number)
+                ->setDatecreated($row->date_created)
+                ->setIsactive($row->is_active)
+                ->setIsdeleted($row->is_deleted)
+                ->setPhonenumber($row->phone_number)
                 ->setEmail($row->email)
                 ->setFullname($row->fullname);
             $entries[] = $entry;
