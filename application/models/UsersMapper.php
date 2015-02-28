@@ -18,6 +18,7 @@ class Application_Model_UsersMapper extends Mapper_Base
             'phone_number' => $user->getPhonenumber(),
             'email' => $user->getEmail(),
             'fullname' => $user->getFullname(),
+            'date_created' => $user->getDateCreated() ? $user->getDateCreated() : date('Y-m-d H:i:s')
         );
 
         if (null === ($id = $user->getId())) {
