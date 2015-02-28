@@ -2,7 +2,7 @@
 
 class Application_Model_AuthMapper
 {
-    public function process($values) {
+    public function authenticateUserLogin($values) {
         // Get our authentication adapter and check credentials
         $adapter = $this->_getAuthAdapter();
         $adapter->setIdentity($values['username']);
