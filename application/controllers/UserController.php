@@ -15,20 +15,30 @@ class UserController extends Zend_Controller_Action
 
     public function signupAction()
     {
-        $this->_helper->getHelper('viewRenderer')->setNoRender();
-        $this->_helper->getHelper('layout')->disableLayout();
+        $formRegister = new Application_Form_Users('register');
+        $this->view->formRegister = $formRegister;
+
         $request = $this->getRequest();
+        if (!$request->isPost()) {
+            return;
+        }
+
+        $postData = $request->getPost();
+        if (!$formRegister->isValid($postData)) {
+            return;
+        }
 
         $password = $request->getParam('password');
         $userCfg = array(
             'username'  => $request->getParam('email'), //use email for username
-            'role'      => 'user',
-            'isactive' => 1,
+            'phonenumber' => $request->getParam("phonenumber"),
             'fullname'  => $request->getParam('name'),
             'email'     => $request->getParam('email'),
+
             'datecreated'  => date('Y-m-d H:i:s'),
             'isdeleted'    => 0,
-            'phonenumber' => $request->getParam("phonenumber"),
+            'role'      => 'user',
+            'isactive' => 1,
         );
 
         $salt = uniqid();
