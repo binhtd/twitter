@@ -29,7 +29,7 @@ class Zend_View_Helper_ProfileInfo
 
         $str = <<<PROFILE
         <h4><a class="u-textInheritColor" href="/vuninhhiep">{$auth->getIdentity()->fullname}</a></h4>
-        <a href="/user/profile/{$auth->getIdentity()->id}" class="DashboardProfileCard-screennameLink u-linkComplex u-linkClean">@<span class="u-linkComplex-target">{$auth->getIdentity()->fullname}</span></a>
+        <a href="#" class="DashboardProfileCard-screennameLink u-linkComplex u-linkClean">@<span class="u-linkComplex-target">{$auth->getIdentity()->fullname}</span></a>
         <div class="row">
             <div class="col-md-4"><span>Tweets</span>
                 <h4>{$sweets}</h4>
