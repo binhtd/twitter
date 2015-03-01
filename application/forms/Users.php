@@ -19,13 +19,29 @@ class Application_Form_Users extends Zend_Form
                     'StringTrim'
                 ),
                 'validators' => array(
-                    'EmailAddress'
+                    'EmailAddress',
+                    array (
+                        'Db_NoRecordExists', false, array(
+                            'table'     => 'users',
+                            'field'     => 'email'
+                        )
+                    )
                 )
             )),
             new Zend_Form_Element_Password('password', array(
                 'required' => true,
                 'filters' => array(
                     'StringTrim'
+                ),
+                'validators' => array(
+                    array(
+                        'StringLength',
+                        false,
+                        array(
+                            'min' => 5,
+                            'max' => 100
+                        )
+                    )
                 )
             )),
             new Zend_Form_Element_Text('phonenumber', array(
