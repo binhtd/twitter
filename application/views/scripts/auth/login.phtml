@@ -1,0 +1,66 @@
+<?php
+$this->headLink()->appendStylesheet($this->baseUrl('/css/pages/login.css'));
+
+$userSignUpLink = $this->url(array('controller'=>'user','action'=>'signup'));
+$form = $this->formLogin;
+$form->setAction($this->url());
+?>
+
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top top-nav-collapse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
+            <a class="navbar-brand page-scroll" href="#page-top"> <i class="fa fa-play-circle"></i> <span class="light">Start</span> Clone Twitter </a> </div>
+    </div>
+</nav>
+
+<header class="intro1">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <h1 class="text-center login-title">Log in to Twitter</h1>
+
+                    <div class="account-wall">
+                        <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                            alt="">
+                        <form class="form-signin"
+                            action="<?php echo $form->getAction();?>"
+                            method="<?php echo $form->getMethod();?>" >
+                            <input type="text"
+                                value="<?php echo $form->username->getValue()?>"
+                                name="<?php echo $form->username->getName()?>"
+                                class="form-control"
+                                placeholder="Phone, email, username"
+                                required autofocus />
+                            <input type="password"
+                                value="<?php echo $form->password->getValue()?>"
+                                name="<?php echo $form->password->getName()?>"
+                                class="form-control"
+                                placeholder="Password"
+                                required />
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                Login</button>
+                            <label class="checkbox pull-left form-links">
+                                <?php
+                                echo $this->formCheckBox('remember_me',null,array('checked'=>$form->remember_me->getValue()));
+                                ?>
+                                Remember me
+                            </label>
+                            <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                            <?php if($this->invalidUserNameOrPass): ?>
+                            <span class="text-danger">Invalid Username or Password</span>
+                            <?php endif;?>
+                        </form>
+
+
+
+                    </div>
+                    <a href="<?php echo $userSignUpLink;?>" class="text-center new-account">Create an account </a>
+                </div>
+            </div>
+        </div><!--div.container-->
+    </div><!--div.intro-body-->
+</header>
+
