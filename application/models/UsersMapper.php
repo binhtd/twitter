@@ -173,6 +173,9 @@ class Application_Model_UsersMapper extends Mapper_Base
 
     private function getUserByListUserIds($userIds)
     {
+        if (empty($userIds)) {
+            return array();
+        }
         $db = $this->getDbTable();
         $select = $db->select()
             ->where('id in (?)', $userIds)
