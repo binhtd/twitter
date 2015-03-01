@@ -28,7 +28,7 @@ class Zend_View_Helper_ProfileInfo
         $followings = empty($followings) ? 0 : count($followings);
 
         $str = <<<PROFILE
-        <h4><a class="u-textInheritColor" href="/vuninhhiep">{$auth->getIdentity()->fullname}</a></h4>
+        <h4><a class="u-textInheritColor" href="#">{$auth->getIdentity()->fullname}</a></h4>
         <a href="#" class="DashboardProfileCard-screennameLink u-linkComplex u-linkClean">@<span class="u-linkComplex-target">{$auth->getIdentity()->fullname}</span></a>
         <div class="row">
             <div class="col-md-4"><span>Tweets</span>
