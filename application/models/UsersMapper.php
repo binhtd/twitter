@@ -73,6 +73,7 @@ class Application_Model_UsersMapper extends Mapper_Base
         }
 
         $select->where('is_active = 1')
+            ->where('id != ?', $follower_id)
             ->where('is_deleted = 0')
             ->order("rand()");
 
@@ -114,6 +115,10 @@ class Application_Model_UsersMapper extends Mapper_Base
             {
                 array_push($userIds, $row->getUserId());
             }
+        }
+        else
+        {
+            array_push($userIds, 0);
         }
 
         return $this->getUserByListUserIds($userIds);
@@ -177,10 +182,17 @@ class Application_Model_UsersMapper extends Mapper_Base
             return array();
         }
         $db = $this->getDbTable();
-        $select = $db->select()
-            ->where('id in (?)', $userIds)
-            ->where('is_active = 1')
-            ->where('is_deleted = 0');
+        $select = $db->select();
+
+        if (!is_array($userIds) && is_numeric($userIds)){
+            $userIds = array($userIds);
+        }
+
+        if (count($userIds) > 0){
+            $select->where('id in (?)', $userIds);
+        }
+        $select->where('is_active = 1')
+               ->where('is_deleted = 0');
 
         $resultSet = $db->fetchAll($select);
 
