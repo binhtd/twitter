@@ -47,7 +47,7 @@ class Application_Model_PostsMapper extends Mapper_Base
             $userIds = array($user_id);
 
             foreach ($userFollowings as $row){
-                array_push($user_id, $row->user_id);
+                array_push($userIds, $row->getUserId());
             }
 
             return $this->findByUserIds($userIds, $limit);
