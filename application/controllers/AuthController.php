@@ -5,21 +5,21 @@ class AuthController extends Zend_Controller_Action
 
     public function loginAction()
     {
-        //no need view
-        $this->_helper->getHelper('viewRenderer')->setNoRender();
-        $this->_helper->getHelper('layout')->disableLayout();
         $request = $this->getRequest();
+        $formLogin = new Application_Form_Login('login');
+
+        $this->view->formLogin = $formLogin;
+        $this->view->invalidUserNameOrPass = false;
 
         if ($request->isPost()) {
-            $identify = array();
-            $identify['username'] = $request->getParam('username_signin');
-            $identify['password'] = $request->getParam('password_signin');
-            $identify["remember_me"] = $request->getParam("remember_me") == 1 ? true: false;
+            $identify = $request->getPost();
             $auth = new Application_Model_AuthMapper();
-
-            if ($auth->authenticateUserLogin($identify)) {
-                $this->_helper->redirector('dashboard', "user");
+            if (!$formLogin->isValid($identify) ||
+                !$auth->authenticateUserLogin($identify)) {
+                $this->view->invalidUserNameOrPass = true;
+                return;
             }
+            $this->_helper->redirector('dashboard', "user");
         }
     }
 

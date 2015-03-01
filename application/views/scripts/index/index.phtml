@@ -3,7 +3,7 @@
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"> <i class="fa fa-bars"></i> </button>
-            <a class="navbar-brand page-scroll" href="#page-top"> <i class="fa fa-play-circle"></i> <span class="light">Start</span> Clone Twitter </a> </div>
+            <a class="navbar-brand page-scroll" href="/#page-top"> <i class="fa fa-play-circle"></i> <span class="light">Start</span> Clone Twitter </a> </div>
     </div>
     <!-- /.container -->
 </nav>
@@ -18,15 +18,22 @@
                 </div>
                 <div class="col-md-4 col-md-offset-1 right-home">
                     <div class="form">
-                        <form method="post" action="<?php echo $this->url(array('controller' => 'Auth', 'action' => 'login')); ?>" role="form" class="form-horizontal">
+                        <form method="post" action="<?php echo $this->url(array('controller' => 'auth', 'action' => 'login')); ?>" role="form" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="text" id="signin-email" name="username_signin" autocomplete="on" class="form-control" placeholder="Phone, email, username">
+                                    <input type="text" id="signin-email"
+                                        name="username" autocomplete="on"
+                                        class="form-control"
+                                        placeholder="Phone, email, username"
+                                        required autofocus />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-9">
-                                    <input type="password" id="signin-password" name="password_signin" placeholder="Password" class="form-control">
+                                    <input type="password" id="signin-password"
+                                        name="password" placeholder="Password"
+                                        class="form-control"
+                                        required autofocus />
                                 </div>
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary btn-block">
@@ -36,13 +43,14 @@
                             </div>
                             <div class="form-links">
                                 <label>
-                                    <input type="checkbox" value="1" name="remember_me">
+                                    <input type="hidden" value="0" name="remember_me" />
+                                    <input type="checkbox" value="1" name="remember_me" />
                                     Remember me</label>
                                 - <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'forgot')); ?>">For got password</a> </div>
                         </form>
                     </div>
                     <div class="form">
-                        <form method="post" action="<?php echo $this->url(array('controller' => 'User', 'action' => 'signup')); ?>" role="form">
+                        <form method="post" action="<?php echo $this->url(array('controller' => 'user', 'action' => 'signup')); ?>" role="form">
                             <div class="form-group"> Next to Twitter? Sign up</div>
                             <div class="form-group">
                                 <input type="text" id="name" name="name" class="form-control" placeholder="Full name..." >
